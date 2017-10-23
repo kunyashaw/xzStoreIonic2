@@ -5,10 +5,24 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { LoadingController } from 'ionic-angular'
 import { AlertController } from 'ionic-angular'
+import { ToastController } from 'ionic-angular'
 
 @Injectable()
 export class MyHttpService {
-    constructor(private alertCtrl: AlertController, private loadCtr: LoadingController, private http: Http) { }
+    constructor(private toastCtr: ToastController, private alertCtrl: AlertController, private loadCtr: LoadingController, private http: Http) { }
+
+    showToast(msg) {
+        this.toastCtr.create({
+            message: msg,
+            duration: 1500,
+            position: 'bottom'
+        }).present();
+    }
+
+    checkUserLogin() {
+        return this.http.get('http://localhost/Framework_codes/data/user/session_data.php', { withCredentials: true })
+            .map((response: Response) => response.json());
+    }
 
     sendRequest(obj: any, url: string) {
         let myLoad = this.loadCtr.create({

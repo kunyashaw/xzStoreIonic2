@@ -24,7 +24,7 @@
   spec : "双核i5/8GB内存/128GB闪存"
 title : "Apple MacBook Air 13.3英寸笔记本 银色(Core i5 处理器/8GB内存/128GB SSD闪存 MMGF2CH/A)"
    -->
-  <ion-list *ngIf="productList.length > 0">
+  <ion-list *ngIf="productList.length > 0 && isLogin">
     <ion-item-sliding *ngFor="let p of productList;let myIndex=index">
       <ion-item>
         <ion-checkbox item-start></ion-checkbox>
@@ -73,12 +73,13 @@ title : "Apple MacBook Air 13.3英寸笔记本 银色(Core i5 处理器/8GB内�
   <ion-grid>
     <!--  align-items-center 纵向对齐 -->
     <ion-row align-items-center *ngIf="productList.length >0">
-      <ion-col col-6>
+      <ion-col col-1>
         <ion-checkbox></ion-checkbox>
-        <ion-label>全选</ion-label>
-        合计{{getTotalPrice()|currency:'CNY':true}}
       </ion-col>
       <ion-col>
+        <span>全选 合计{{getTotalPrice()|currency:'CNY':true}}</span>
+      </ion-col>
+      <ion-col col-3>
         <button [navPush]="orderConfirm" block ion-button color="danger">
           去结算
         </button>

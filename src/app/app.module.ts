@@ -18,6 +18,7 @@ import { LoginPage } from '../pages/login/login'
 import { OrderConfirmPage } from '../pages/order-confirm/order-confirm'
 import { HomePage } from '../pages/home/home'
 import { NotFoundPage } from '../pages/not-found/not-found'
+import { UserCenterPage } from '../pages/user-center/user-center'
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { NotFoundPage } from '../pages/not-found/not-found'
     OrderConfirmPage,
     HomePage,
     MyDetailPipe,
-    NotFoundPage
+    NotFoundPage,
+    UserCenterPage
   ],
   imports: [
     BrowserModule,
@@ -47,7 +49,8 @@ import { NotFoundPage } from '../pages/not-found/not-found'
     LoginPage,
     OrderConfirmPage,
     HomePage,
-    NotFoundPage
+    NotFoundPage,
+    UserCenterPage
   ],
   providers: [
     MyHttpService,

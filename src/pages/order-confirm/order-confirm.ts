@@ -12,6 +12,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 @Component({
   selector: 'page-order-confirm',
   templateUrl: 'order-confirm.html',
+  styleUrls: ['../assets/css/order_confirm.css']
 })
 export class OrderConfirmPage {
 

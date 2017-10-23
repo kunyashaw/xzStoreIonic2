@@ -4,6 +4,7 @@ import { MyHttpService } from '../../app/utility/service/myhttp.service'
 
 import { IndexPage } from '../index/index'
 import { OrderConfirmPage } from '../order-confirm/order-confirm'
+import { LoginPage } from '../login/login'
 
 /**
  * Generated class for the CartPage page.
@@ -22,6 +23,7 @@ export class CartPage {
   totalPrice = 0;
   index;
   orderConfirm;
+  isLogin: boolean = false;
   @ViewChild("myTabs") myTabs: Tabs;
 
 
@@ -35,7 +37,10 @@ export class CartPage {
     console.log('ionViewDidLoad CartPage');
   }
 
-  ionViewWillEnter() {
+
+
+  ionViewDidEnter() {
+    this.guard();
     this.loadData();
   }
 
@@ -90,5 +95,24 @@ export class CartPage {
 
   getIndex() {
     this.navCtrl.parent.select(0);
+  }
+
+
+  //守卫
+  guard() {
+    this.myHttp.checkUserLogin().subscribe((data) => {
+      console.log('login', data);
+      if (data.uid) {
+        this.isLogin = true;
+        return true;
+      }
+      else {
+        this.isLogin = false;
+        this.myHttp.showToast('未登录，准备跳转到登录页面');
+        this.navCtrl.push(LoginPage, { from: this });
+        return false;
+      }
+    })
+    return false;
   }
 }

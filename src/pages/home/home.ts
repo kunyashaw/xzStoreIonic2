@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { IndexPage } from '../index/index'
 import { CartPage } from '../cart/cart'
 import { OrderConfirmPage } from '../order-confirm/order-confirm'
+import { UserCenterPage } from '../user-center/user-center'
 
 /**
  * Generated class for the HomePage page.
@@ -20,11 +21,12 @@ export class HomePage {
   index;
   cart;
   orderConfirm;
+  userCenter;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.index = IndexPage;
     this.cart = CartPage;
     this.orderConfirm = OrderConfirmPage;
-
+    this.userCenter = UserCenterPage;
   }
 
   ionViewDidLoad() {
