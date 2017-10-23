@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
+import { PayPage } from '../pay/pay'
 /**
  * Generated class for the OrderConfirmPage page.
  *
@@ -16,11 +16,17 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class OrderConfirmPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public modalCtr: ModalController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderConfirmPage');
+  }
+
+  pay() {
+    let myWidnow = this.modalCtr.create(PayPage);
+    console.log('准备显示');
+    myWidnow.present();
   }
 
 }
