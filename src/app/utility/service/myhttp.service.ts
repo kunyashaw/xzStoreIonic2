@@ -14,7 +14,7 @@ export class MyHttpService {
     showToast(msg) {
         this.toastCtr.create({
             message: msg,
-            duration: 1500,
+            duration: 500,
             position: 'bottom'
         }).present();
     }

@@ -93,8 +93,12 @@ export class CartPage {
 
   }
 
-  getIndex() {
+  jumpToTabIndex() {
     this.navCtrl.parent.select(0);
+  }
+  jumpToLogin() {
+    this.myHttp.showToast('准备跳转到登录页面');
+    this.navCtrl.push(LoginPage);
   }
 
 
@@ -108,8 +112,12 @@ export class CartPage {
       }
       else {
         this.isLogin = false;
-        this.myHttp.showToast('未登录，准备跳转到登录页面');
-        this.navCtrl.push(LoginPage, { from: this });
+        if (this.navCtrl.parent.getSelected().index != 1) {
+          this.myHttp.showToast('未登录，准备跳转到登录页面');
+          this.navCtrl.push(LoginPage);
+        }
+        //if ()
+
         return false;
       }
     })

@@ -35,11 +35,11 @@ export class PayPage {
 
     setTimeout(() => {
       this.toastCtrl.create({
-        message: '支付成功!'
+        message: '支付成功!', duration: 500
       }).present();
       this.closeModal();
-      console.log("navCtrl",this.navCtrl);
-      console.log("navCtrl",this.viewCtrl);
+      console.log("navCtrl", this.navCtrl);
+      console.log("navCtrl", this.viewCtrl);
     }, 1500)
   }
 

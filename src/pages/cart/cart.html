@@ -62,15 +62,21 @@ title : "Apple MacBook Air 13.3英寸笔记本 银色(Core i5 处理器/8GB内�
 
   </ion-list>
 
-  <div style="text-align:center" *ngIf="productList.length == 0">
+  <div text-center *ngIf="productList.length == 0 && isLogin">
     <img src="assets/img/404/404_img2.png" />
     <h3>购物车是空的</h3>
-    <button (click)="getIndex()" ion-button block color="secondary">逛逛去</button>
+    <button (click)="jumpToTabIndex()" ion-button block color="secondary">逛逛去</button>
+  </div>
+
+  <div text-center *ngIf="!isLogin">
+    <img src="assets/img/404/404_img2.png" alt="">
+    <p>只有登录后才可以查看购物车信息</p>
+    <button (click)="jumpToLogin()" ion-button block color="secondary">去登录</button>
   </div>
 </ion-content>
 
 <ion-footer>
-  <ion-grid>
+  <ion-grid *ngIf="isLogin">
     <!--  align-items-center 纵向对齐 -->
     <ion-row align-items-center *ngIf="productList.length >0">
       <ion-col col-1>

@@ -4,6 +4,7 @@ import { MyHttpService } from '../../app/utility/service/myhttp.service'
 
 import { NotFoundPage } from '../not-found/not-found'
 import { CartPage } from '../cart/cart'
+import { LoginPage } from '../login/login'
 import { ToastController } from 'ionic-angular'
 
 /**
@@ -65,6 +66,7 @@ export class DetailPage {
           }
           else if (result.code == 300) {
             showToastMsg = "未登录，将跳转到登录页面"
+            this.navCtrl.push(LoginPage);
           }
           this.toastCtr
             .create({
