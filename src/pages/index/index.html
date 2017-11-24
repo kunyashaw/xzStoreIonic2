@@ -28,7 +28,7 @@
 
 <ion-content padding>
 
-  <ion-slides style="height:100px" *ngIf="carouselItems.length > 0" pager autoplay=500 speed=1000 loop=true direction="horizontal"
+  <ion-slides #mySlides style="height:100px" *ngIf="carouselItems.length > 0" pager autoplay=500 speed=1000 loop=true direction="horizontal"
     effect="fade" paginationType="bullets">
     <ion-slide style="height:100px" *ngFor="let item of carouselItems">
       <img [src]="'assets/'+item.img" />
@@ -54,7 +54,7 @@
 
 
   <ion-list>
-    <ion-list-header>
+    <ion-list-header class="myBlue">
       推荐商品
     </ion-list-header>
     <ion-item text-wrap *ngFor="let item of recommendedItems">

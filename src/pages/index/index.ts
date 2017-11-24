@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { ViewChild, Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MyHttpService } from '../../app/utility/service/myhttp.service'
 import { DetailPage } from '../detail/detail'
+import { Slides } from 'ionic-angular'
 /**
  * Generated class for the IndexPage page.
  *
@@ -15,6 +16,8 @@ import { DetailPage } from '../detail/detail'
   templateUrl: 'index.html',
 })
 export class IndexPage {
+  @ViewChild('mySlides') MySlides: Slides;
+
   //轮播商品
   carouselItems: Array<any> = [];
   //保存的推荐商品的对象数组
@@ -32,6 +35,18 @@ export class IndexPage {
 
   ionViewWillEnter() {
     this.loadData();
+    if (this.MySlides) {
+      this.MySlides.startAutoplay();
+      console.log('开始自动播放');
+    }
+
+  }
+
+  ionViewWillLeave() {
+    if (this.MySlides) {
+      this.MySlides.stopAutoplay();
+      console.log('停止自动播放');
+    }
   }
 
   //初始化数据

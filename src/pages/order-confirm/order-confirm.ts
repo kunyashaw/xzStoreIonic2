@@ -21,12 +21,21 @@ export class OrderConfirmPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderConfirmPage');
+
+  }
+  ionViewWillEnter() {
+
   }
 
   pay() {
     let myWidnow = this.modalCtr.create(PayPage);
     console.log('准备显示');
     myWidnow.present();
+    myWidnow.onDidDismiss(data => {
+      console.log("---navParams", data);
+      //跳转到首页
+      this.navCtrl.parent.select(0);
+    });
   }
 
 }

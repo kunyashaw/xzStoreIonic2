@@ -20,11 +20,10 @@ export class PayPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad PayPage');
-
   }
 
   closeModal() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss({ 'foo': 'bar' });
   }
 
   payOrder() {

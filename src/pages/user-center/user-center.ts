@@ -29,6 +29,7 @@ export class UserCenterPage {
       .subscribe((data) => {
         if (data.code == 200) {
           this.myHttp.showToast('退出成功');
+          console.log(this.navCtrl);
           this.navCtrl.parent.select(0);
         }
       })
