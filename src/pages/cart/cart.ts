@@ -19,6 +19,7 @@ import { LoginPage } from '../login/login'
   templateUrl: 'cart.html',
 })
 export class CartPage {
+  isSelectAll: boolean = false;
   productList: Array<any> = [];
   totalPrice = 0;
   index;
@@ -51,6 +52,9 @@ export class CartPage {
         console.log('cart', result);
         if (result.code == 200) {
           this.productList = result.data;
+          for (var i = 0; i < this.productList.length; i++) {
+            this.productList[i].isSelect = false;
+          }
         }
       })
   }
@@ -58,7 +62,10 @@ export class CartPage {
   getTotalPrice() {
     this.totalPrice = 0;
     for (var i = 0; i < this.productList.length; i++) {
-      this.totalPrice += (this.productList[i].count * this.productList[i].price);
+      if (this.productList[i].isSelect) {
+        this.totalPrice += (this.productList[i].count * this.productList[i].price);
+      }
+
     }
     console.log("计算后的总价格信息为", this.totalPrice);
     return this.totalPrice;
@@ -91,6 +98,22 @@ export class CartPage {
     }
     this.productList[index].count = readyModifyCount;
 
+  }
+
+  selectOne(index) {
+    console.log(this.productList[index].isSelect);
+    let result = true;
+    for (var i = 0; i < this.productList.length; i++) {
+      result = result && this.productList[i].isSelect;
+    }
+    this.isSelectAll = result;
+  }
+
+  selectAll() {
+    console.log(this.isSelectAll);
+    for (var i = 0; i < this.productList.length; i++) {
+      this.productList[i].isSelect = this.isSelectAll;
+    }
   }
 
   jumpToTabIndex() {

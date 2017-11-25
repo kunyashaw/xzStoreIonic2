@@ -27,7 +27,7 @@ title : "Apple MacBook Air 13.3英寸笔记本 银色(Core i5 处理器/8GB内�
   <ion-list *ngIf="productList.length > 0 && isLogin">
     <ion-item-sliding *ngFor="let p of productList;let myIndex=index">
       <ion-item>
-        <ion-checkbox item-start></ion-checkbox>
+        <ion-checkbox [(ngModel)]="p.isSelect" (ngModelChange)="selectOne(myIndex)" item-start></ion-checkbox>
         <ion-thumbnail item-end>
           <ion-grid>
             <ion-row>
@@ -80,7 +80,7 @@ title : "Apple MacBook Air 13.3英寸笔记本 银色(Core i5 处理器/8GB内�
     <!--  align-items-center 纵向对齐 -->
     <ion-row align-items-center *ngIf="productList.length >0">
       <ion-col col-1>
-        <ion-checkbox></ion-checkbox>
+        <ion-checkbox [(ngModel)]="isSelectAll" (ngModelChange)="selectAll()"></ion-checkbox>
       </ion-col>
       <ion-col>
         <span>全选 合计{{getTotalPrice()|currency:'CNY':true}}</span>
