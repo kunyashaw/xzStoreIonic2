@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ModalController, IonicPage, NavController, NavParams } from 'ionic-angular';
 import { PayPage } from '../pay/pay'
+import { MyHttpService } from '../../app/utility/service/myhttp.service'
 /**
  * Generated class for the OrderConfirmPage page.
  *
@@ -15,27 +16,45 @@ import { PayPage } from '../pay/pay'
   styleUrls: ['../assets/css/order_confirm.css']
 })
 export class OrderConfirmPage {
-
-  constructor(public modalCtr: ModalController, public navCtrl: NavController, public navParams: NavParams) {
+  list: Array<any> = [];
+  constructor(
+    public myHttp: MyHttpService,
+    public modalCtr: ModalController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad OrderConfirmPage');
-
+    this.initData();
   }
   ionViewWillEnter() {
 
   }
 
+  getTotalPrice() {
+    let totalPrice = 0;
+    for (var i = 0; i < this.list.length; i++) {
+      totalPrice += (this.list[i].count * this.list[i].price);
+    }
+    return totalPrice;
+  }
   pay() {
-    let myWidnow = this.modalCtr.create(PayPage);
+    let myWidnow = this.modalCtr.create(PayPage, { price: this.getTotalPrice() });
     console.log('准备显示');
     myWidnow.present();
     myWidnow.onDidDismiss(data => {
-      console.log("---navParams", data);
-      //跳转到首页
-      this.navCtrl.parent.select(0);
+      console.log(data);
+      if (data.result) {
+        this.navCtrl.parent.select(0);
+      }
     });
+  }
+
+  initData() {
+    this.myHttp
+      .sendRequest(this, "http://localhost/Framework_codes/data/cart/list.php")
+      .subscribe((result: any) => {
+        this.list = result.data;
+      })
   }
 
 }

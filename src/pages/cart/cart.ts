@@ -24,6 +24,7 @@ export class CartPage {
   totalPrice = 0;
   index;
   orderConfirm;
+  isConfirmEnabled: boolean = false;
   isLogin: boolean = false;
   @ViewChild("myTabs") myTabs: Tabs;
 
@@ -41,6 +42,7 @@ export class CartPage {
 
 
   ionViewDidEnter() {
+    this.isSelectAll = false;
     this.guard();
     this.loadData();
   }
@@ -103,10 +105,15 @@ export class CartPage {
   selectOne(index) {
     console.log(this.productList[index].isSelect);
     let result = true;
+    let isConfirmEnabled = false;
     for (var i = 0; i < this.productList.length; i++) {
+      //计算是否全部选中了
       result = result && this.productList[i].isSelect;
+      //有一个为真，就允许点击 去结算
+      isConfirmEnabled = isConfirmEnabled || this.productList[i].isSelect;
     }
     this.isSelectAll = result;
+    this.isConfirmEnabled = isConfirmEnabled;
   }
 
   selectAll() {
@@ -114,6 +121,7 @@ export class CartPage {
     for (var i = 0; i < this.productList.length; i++) {
       this.productList[i].isSelect = this.isSelectAll;
     }
+    this.isConfirmEnabled = this.isSelectAll;
   }
 
   jumpToTabIndex() {

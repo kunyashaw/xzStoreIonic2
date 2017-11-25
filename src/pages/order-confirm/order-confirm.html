@@ -28,34 +28,17 @@
     </ion-item>
     <hr/>
     <!-- 产品信息 -->
-    <ion-item>
+    <ion-item *ngFor="let item of list">
       <ion-thumbnail item-start>
-        <img src="assets/img/product/md/57ad359dNd4a6f130.jpg" />
+        <img [src]="'assets/'+item.pic" />
       </ion-thumbnail>
-      <h3>mac air</h3>
-      <p>处理器速度升级至1.8GHz，续航依旧持久，长达12小时！</p>
-      <h3 style="color:red">￥6888.00 x 1</h3>
+      <h3>{{item.title}}</h3>
+      <p>{{item.subTitle}}</p>
+      <h3 style="color:red">￥{{item.price+"x"+item.count}} </h3>
     </ion-item>
 
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="assets/img/product/md/5787107bN73d05ad5.jpg" />
-      </ion-thumbnail>
-      <h3>mac air</h3>
-      <p>处理器速度升级至1.8GHz，续航依旧持久，长达12小时！</p>
-      <h3 style="color:red">￥6888.00 x 3</h3>
-    </ion-item>
 
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src="assets/img/product/md/57871086N86c8f0ab.jpg" />
-      </ion-thumbnail>
-      <h3>mac air</h3>
-      <p>处理器速度升级至1.8GHz，续航依旧持久，长达12小时！</p>
-      <h3 style="color:red">￥6888.00 x 2</h3>
-    </ion-item>
     <hr/>
     <button ion-button block (click)="pay()" color="secondary" round>在线支付</button>
   </ion-list>
-
 </ion-content>

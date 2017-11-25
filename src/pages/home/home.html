@@ -15,7 +15,7 @@
 
 <ion-content padding>
   <ion-tabs #myTabs>
-    <ion-tab tabIcon="home" tabTitle="首页" [root]="index"></ion-tab>
+    <ion-tab tabIcon="home" tabsHideOnSubPages="true" tabTitle="首页" [root]="index"></ion-tab>
     <ion-tab tabIcon="cart" tabsHideOnSubPages="true" tabTitle="购物车" [root]="cart"></ion-tab>
     <ion-tab tabIcon="person" tabTitle="我的" [root]="userCenter"></ion-tab>
     <ion-tab tabIcon="settings" tabTitle="设置" [root]="orderConfirm"></ion-tab>

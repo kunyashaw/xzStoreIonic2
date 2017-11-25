@@ -59,7 +59,11 @@ title : "Apple MacBook Air 13.3英寸笔记本 银色(Core i5 处理器/8GB内�
         </button>
       </ion-item-options>
     </ion-item-sliding>
-
+    <ion-item>
+      <br/>
+      <br/>
+      <br/>
+    </ion-item>
   </ion-list>
 
   <div text-center *ngIf="productList.length == 0 && isLogin">
@@ -86,7 +90,7 @@ title : "Apple MacBook Air 13.3英寸笔记本 银色(Core i5 处理器/8GB内�
         <span>全选 合计{{getTotalPrice()|currency:'CNY':true}}</span>
       </ion-col>
       <ion-col col-3>
-        <button [navPush]="orderConfirm" block ion-button color="danger">
+        <button [disabled]="!isConfirmEnabled" [navPush]="orderConfirm" block ion-button color="danger">
           去结算
         </button>
       </ion-col>

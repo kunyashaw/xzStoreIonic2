@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoadingController, ViewController, ToastController, IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { MyHttpService } from '../../app/utility/service/myhttp.service'
 /**
  * Generated class for the PayPage page.
  *
@@ -14,32 +14,46 @@ import { LoadingController, ViewController, ToastController, IonicPage, NavContr
   templateUrl: 'pay.html',
 })
 export class PayPage {
-
-  constructor(public viewCtrl: ViewController, private loadCtr: LoadingController, private toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams) {
+  totalPrice: any;
+  constructor(
+    public myHttp: MyHttpService,
+    public viewCtrl: ViewController, private loadCtr: LoadingController, private toastCtrl: ToastController, public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad PayPage');
+    console.log('ionViewDidLoad PayPage', this.navParams);
+    this.totalPrice = this.navParams.get('price');
   }
 
-  closeModal() {
-    this.viewCtrl.dismiss({ 'foo': 'bar' });
+  closeModal(result: boolean) {
+    this.viewCtrl.dismiss({ 'result': result });
   }
 
   payOrder() {
-    this.loadCtr.create({
-      content: '支付中...',
-      duration: 1500
-    }).present();
+    /**
+     * if($iid = -1)
+      {
+        $sql = "DELETE FROM xz_shoppingcart_item";
+      }
+      else
+      {
+        $sql = "DELETE FROM xz_shoppingcart_item WHERE iid=$iid";
+      }
+    * 
+     */
+    this.myHttp
+      .sendRequest(this, 'http://localhost/Framework_codes/data/cart/del.php?iid=-1')
+      .subscribe((result: any) => {
+        if (result.code == 200) {
+          this.myHttp.showToast('支付成功');
+          this.closeModal(true);
+        }
+        else if (result.code == 500) {
+          this.myHttp.showToast('下单失败');
+          this.closeModal(false);
+        }
 
-    setTimeout(() => {
-      this.toastCtrl.create({
-        message: '支付成功!', duration: 500
-      }).present();
-      this.closeModal();
-      console.log("navCtrl", this.navCtrl);
-      console.log("navCtrl", this.viewCtrl);
-    }, 1500)
+      })
   }
 
 }
