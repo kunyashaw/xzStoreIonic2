@@ -20,6 +20,7 @@ import { HomePage } from '../pages/home/home'
 import { NotFoundPage } from '../pages/not-found/not-found'
 import { UserCenterPage } from '../pages/user-center/user-center'
 import { PayPage } from '../pages/pay/pay'
+import { ListPage } from '../pages/list/list'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { PayPage } from '../pages/pay/pay'
     MyDetailPipe,
     NotFoundPage,
     UserCenterPage,
-    PayPage
+    PayPage,
+    ListPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { PayPage } from '../pages/pay/pay'
     HomePage,
     NotFoundPage,
     UserCenterPage,
-    PayPage
+    PayPage,
+    ListPage
   ],
   providers: [
     MyHttpService,

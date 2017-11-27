@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MyHttpService } from '../../app/utility/service/myhttp.service'
 import { DetailPage } from '../detail/detail'
 import { Slides } from 'ionic-angular'
+import { ListPage } from '../list/list'
 /**
  * Generated class for the IndexPage page.
  *
@@ -17,6 +18,7 @@ import { Slides } from 'ionic-angular'
 })
 export class IndexPage {
   @ViewChild('mySlides') MySlides: Slides;
+  myInput: string = "";
 
   //轮播商品
   carouselItems: Array<any> = [];
@@ -26,6 +28,10 @@ export class IndexPage {
   detail;
   constructor(private myHttp: MyHttpService, public navCtrl: NavController, public navParams: NavParams) {
     this.detail = DetailPage;
+  }
+
+  doSearch() {
+    this.navCtrl.push(ListPage, { kw: this.myInput });
   }
 
   ionViewDidLoad() {

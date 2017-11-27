@@ -14,7 +14,7 @@
         </button>
       </ion-col>
       <ion-col>
-        <ion-searchbar debounce=300></ion-searchbar>
+        <ion-searchbar (keyup.enter)="doSearch()" [(ngModel)]="myInput" debounce=300></ion-searchbar>
       </ion-col>
       <ion-col col-1>
         <button color="myLight" ion-button clear block>
@@ -57,7 +57,7 @@
     <ion-list-header class="myBlue">
       推荐商品
     </ion-list-header>
-    <ion-item text-wrap *ngFor="let item of recommendedItems">
+    <ion-item [navPush]="detail" [navParams]="{id:item.pid}" text-wrap *ngFor="let item of recommendedItems">
       <ion-thumbnail item-start>
         <img [src]="'assets/'+item.pic" />
       </ion-thumbnail>
