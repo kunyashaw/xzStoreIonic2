@@ -44,6 +44,10 @@ export class OrderConfirmPage {
     myWidnow.onDidDismiss(data => {
       console.log(data);
       if (data.result) {
+
+        if (this.navCtrl.canGoBack()) {
+          this.navCtrl.pop();
+        }
         this.navCtrl.parent.select(0);
       }
     });

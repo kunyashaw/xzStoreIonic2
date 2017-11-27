@@ -40,6 +40,7 @@ export class IndexPage {
   }
 
   ionViewWillEnter() {
+    this.myInput = "";
     this.loadData();
     if (this.MySlides) {
       this.MySlides.startAutoplay();
